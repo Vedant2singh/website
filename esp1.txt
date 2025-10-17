@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA - Landing Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    font-family:'Orbitron',sans-serif;
+    background:#0a1f2c;
+    width:100%;height:100%;
+    color:#fff;
+    scroll-behavior:smooth;
+    min-height:100vh;
+    position:relative;
+  }
+
+  nav{
+    width:100%;background:#081722;
+    padding:15px 0;text-align:center;
+    position:fixed;top:0;left:0;z-index:10;
+  }
+  nav a{
+    margin:0 15px;text-decoration:none;
+    color:#00f0ff;font-weight:bold;transition:0.3s;
+  }
+  nav a:hover{color:#16fff5;}
+  section{
+    min-height:100vh;
+    padding:100px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    position:relative;
+    z-index:2;
+  }
+
+  /* Parallax & Canvas - always at back */
+  .parallax, #bg {
+    position:fixed;
+    top:0;left:0;
+    width:100vw;height:100vh;
+    z-index:0;
+    pointer-events:none;
+  }
+  #bg {
+    z-index:1;
+  }
+
+  /* Multi-layer parallax styles */
+  .layer {
+    position:absolute;
+    width:200%;height:200%;
+    background-repeat:repeat;
+    background-size:cover;
+    top:0;left:0;
+  }
+  .stars {
+    background-image: url('space.jpg');
+    animation: moveStars 200s linear infinite;
+  }
+  .twinkling {
+    background-image: url('stars.jpg');
+    animation: moveTwinkle 100s linear infinite;
+    opacity:0.5;
+  }
+  .clouds {
+    background-image: url('nebula.jpg');
+    animation: moveClouds 300s linear infinite;
+    opacity:0.3;
+  }
+  @keyframes moveStars   { from{transform:translateY(0);}    to{transform:translateY(-1000px);} }
+  @keyframes moveTwinkle { from{transform:translateX(0);}    to{transform:translateX(-1000px);} }
+  @keyframes moveClouds  { from{transform:translate(0,0);}   to{transform:translate(-1000px,-1000px);} }
+
+  /* Hero */
+  .hero{position:relative;z-index:3;text-align:center;}
+  .hero h1{font-size:6vw;text-shadow:0 0 20px #00f0ff,0 0 40px #16fff5;animation:glow 3s infinite alternate;}
+  .hero p{font-size:1.5rem;margin-top:15px;color:#a0f0f5;}
+  @keyframes glow{0%{text-shadow:0 0 20px #00f0ff;}100%{text-shadow:0 0 35px #1affff;}}
+
+  /* Principal’s Note */
+  .about-container{
+    display:flex;align-items:center;justify-content:center;
+    gap:40px;flex-wrap:wrap;
+    background:rgba(10,31,44,0.85);
+    border-radius:15px;
+    padding:40px;
+    box-shadow:0 0 20px rgba(0,255,255,0.3);
+  }
+  .about-text{flex:1;min-width:280px;}
+  .about-text h2{color:#00f0ff;margin-bottom:20px;}
+  .about-text p{font-size:1.1rem;line-height:1.6;}
+  .about-img img{width:100%;max-width:350px;border-radius:15px;}
+
+  /* Team */
+  .team-container{display:flex;justify-content:center;flex-wrap:wrap;gap:30px;margin-top:30px;}
+  .member{text-align:center;background:#112633;padding:20px;border-radius:15px;width:200px;transition:0.3s;}
+  .member:hover{transform:translateY(-5px);box-shadow:0 0 15px rgba(0,255,255,0.4);}
+  .member img{width:120px;height:120px;border-radius:50%;margin-bottom:15px;}
+  .member h3{margin-bottom:5px;color:#fff;}
+  .member p{color:#16fff5;font-weight:bold;}
+
+  /* Responsive */
+  @media(max-width:768px){
+    .hero h1{font-size:12vw;}
+    .hero p{font-size:1rem;}
+    .about-container{flex-direction:column;text-align:center;}
+    .about-img img{max-width:250px;}
+  }
+  @media(max-width:480px){
+    .hero h1{font-size:18vw;}
+    .hero p{font-size:0.9rem;}
+    nav a{margin:0 8px;font-size:0.9rem;}
+    .member{width:150px;padding:15px;}
+    .member img{width:90px;height:90px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Parallax background and interactive stars -->
+<canvas id="bg"></canvas>
+<div class="parallax">
+  <div class="layer stars"></div>
+  <div class="layer twinkling"></div>
+  <div class="layer clouds"></div>
+</div>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#principal">Principal’s Note</a>
+  <a href="#team">Management Team</a>
+</nav>
+
+<!-- Home -->
+<section id="home">
+  <div class="hero">
+    <h1>NOVA</h1>
+    <p>Nurturing. Opportunity. Vision. Achievement.</p>
+  </div>
+</section>
+
+<!-- Principal’s Note -->
+<section id="principal">
+  <div class="about-container">
+    <div class="about-text">
+      <h2>Principal’s Note</h2>
+      <p>
+        Welcome to NOVA. Innovation and learning should always move hand in hand.  
+        At our institution, we encourage curiosity, creativity, and commitment.  
+        Our goal is to nurture young minds, giving them the vision to achieve greatness.  
+      </p>
+      <p>
+        We believe in providing a strong foundation through modern education, technology,  
+        and opportunities so that every student shines bright like the stars in NOVA.
+      </p>
+    </div>
+    <div class="about-img">
+      <img src="Principal.png" alt="Principal">
+    </div>
+  </div>
+</section>
+
+<!-- Management Team -->
+<section id="team">
+  <h2 style="text-align:center;color:#00f0ff;">Management Team</h2>
+  <div class="team-container">
+    <div class="member">
+      <img src="https://via.placeholder.com/120.png?text=CEO" alt="CEO">
+      <h3>Jiara Martins</h3>
+      <p>CEO</p>
+    </div>
+    <div class="member">
+      <img src="https://via.placeholder.com/120.png?text=COO" alt="COO">
+      <h3>Chidi Eze</h3>
+      <p>COO</p>
+    </div>
+    <div class="member">
+      <img src="https://via.placeholder.com/120.png?text=CTO" alt="CTO">
+      <h3>Aiyla Hakim</h3>
+      <p>CTO</p>
+    </div>
+    <div class="member">
+      <img src="https://via.placeholder.com/120.png?text=CFO" alt="CFO">
+      <h3>Sacha Dubois</h3>
+      <p>CFO</p>
+    </div>
+  </div>
+</section>
+
+<script>
+// Background stars with mouse movement
+const canvas=document.getElementById('bg');
+const ctx=canvas.getContext('2d');
+let W=canvas.width=window.innerWidth,H=canvas.height=window.innerHeight;
+let stars=[],starCount=W>768?200:W>480?120:80;
+let mouseX=0,mouseY=0;
+window.addEventListener('mousemove',e=>{
+  mouseX=e.clientX-W/2;
+  mouseY=e.clientY-H/2;
+});
+class Star{
+  constructor(){this.reset();}
+  reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.size=Math.random()*1.5+0.5;this.speed=0.2+Math.random()*0.3;}
+  update(){
+    this.y-=this.speed;
+    this.x+=mouseX*0.001; 
+    if(this.y<0)this.y=H;
+    if(this.x<0)this.x=W;
+    if(this.x>W)this.x=0;
+  }
+  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle='cyan';ctx.fill();}
+}
+for(let i=0;i<starCount;i++)stars.push(new Star());
+function animate(){
+  ctx.fillStyle='#0a1f2c';
+  ctx.fillRect(0,0,W,H);
+  stars.forEach(s=>{s.update();s.draw();});
+  requestAnimationFrame(animate);
+}
+animate();
+window.addEventListener('resize',()=>{
+  W=canvas.width=window.innerWidth;
+  H=canvas.height=window.innerHeight;
+});
+</script>
+</body>
+</html>
